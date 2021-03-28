@@ -1,18 +1,18 @@
 // import s from "./RecipeForm/RecipeForm.module.scss";
-import s from "./IngredientsInput.module.scss";
-import { v4 as uuid } from "uuid";
-import classnames from "classnames";
-import { useState } from "react";
-import { Input } from "../Input/Input";
-import { UnitSelect } from "../UnitSelect";
+import s from './IngredientsInput.module.scss';
+import { v4 as uuid } from 'uuid';
+import classnames from 'classnames';
+import { useState } from 'react';
+import { Input } from '../Input/Input';
+import { UnitSelect } from '../UnitSelect';
 
-const initialIngredient = { name: "", unit: "", amount: "" };
+const initialIngredient = { name: '', unit: '', amount: '' };
 
 function IngredientsList({
   ingredientsList,
   setIngredientsList,
   findErrors,
-  errors
+  errors,
 }) {
   function editIngredient(editedItem, field, index) {
     const updatedIngredients = [...ingredientsList];
@@ -37,7 +37,7 @@ function IngredientsList({
                 multiple
                 placeholder="Name"
                 value={ingredient.name}
-                onChange={(e) => editIngredient(e.target.value, "name", index)}
+                onChange={(e) => editIngredient(e.target.value, 'name', index)}
                 autoComplete="off"
               />
               <Input
@@ -46,15 +46,15 @@ function IngredientsList({
                 placeholder="Amount"
                 value={ingredient.amount}
                 onChange={(e) =>
-                  editIngredient(e.target.value, "amount", index)
+                  editIngredient(e.target.value, 'amount', index)
                 }
                 autoComplete="off"
               />
               <UnitSelect
-                options={["g", "kg", "ml", "l", "tbsp", "tspn", "pieces"]}
+                options={['g', 'kg', 'ml', 'l', 'tbsp', 'tspn', 'pieces']}
                 value={ingredient.unit}
                 edit="true"
-                onChange={(e) => editIngredient(e.target.value, "unit", index)}
+                onChange={(e) => editIngredient(e.target.value, 'unit', index)}
               />
             </div>
             <div className={s.removeItem}>
@@ -81,7 +81,7 @@ export function IngredientsInput({
   ingredientsList,
   setIngredientsList,
   errors,
-  findErrors
+  findErrors,
 }) {
   const [newIngredient, setNewIngredient] = useState(initialIngredient);
 
@@ -92,11 +92,12 @@ export function IngredientsInput({
   function addIngredient() {
     const updatedIngredients = [
       ...ingredientsList,
-      { ...newIngredient, id: uuid() }
+      { ...newIngredient, id: uuid() },
     ];
     setIngredientsList(updatedIngredients);
     setNewIngredient(initialIngredient);
   }
+
   return (
     <>
       <div className={s.ingredientContainer}>
@@ -106,7 +107,7 @@ export function IngredientsInput({
             multiple
             placeholder="Name"
             value={newIngredient.name}
-            onChange={(e) => ingredientHandleChange(e.target.value, "name")}
+            onChange={(e) => ingredientHandleChange(e.target.value, 'name')}
             autoComplete="off"
           />
           <Input
@@ -114,14 +115,14 @@ export function IngredientsInput({
             multiple
             placeholder="Amount"
             value={newIngredient.amount}
-            onChange={(e) => ingredientHandleChange(e.target.value, "amount")}
+            onChange={(e) => ingredientHandleChange(e.target.value, 'amount')}
             autoComplete="off"
           />
           <UnitSelect
-            options={["g", "kg", "ml", "l", "tbsp", "tspn", "pieces"]}
+            options={['g', 'kg', 'ml', 'l', 'tbsp', 'tspn', 'pieces']}
             value={newIngredient.unit}
             edit={isEdit}
-            onChange={(e) => ingredientHandleChange(e.target.value, "unit")}
+            onChange={(e) => ingredientHandleChange(e.target.value, 'unit')}
           />
         </div>
         <div className={s.addItem}>

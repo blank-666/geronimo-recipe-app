@@ -1,12 +1,12 @@
-import s from "./FavoriteRecipesList.module.scss";
-import defaultDish from "../../icons/dish.png";
-import selectedBookmark from "../../icons/selected-bookmark.svg";
-import { RecipesList } from "../RecipesList";
+import s from './FavoriteRecipesList.module.scss';
+import defaultDish from '../../icons/dish.png';
+import selectedBookmark from '../../icons/selected-bookmark.svg';
+import { RecipesList } from '../RecipesList';
 
 export function FavoriteRecipesList({
   favoriteRecipes,
   favoriteIdList,
-  removeFavorite
+  removeFavorite,
 }) {
   return (
     <div className={s.container}>

@@ -1,20 +1,20 @@
-import "./styles.css";
-import { useEffect, useState } from "react";
-import { LocalStorageManager } from "./LocalStorageManager";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { recipes, categoriesList } from "./data";
+import './styles.css';
+import { useEffect, useState } from 'react';
+import { LocalStorageManager } from './LocalStorageManager';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { recipes, categoriesList } from './data';
 //
-import { PreviewPage } from "./components/PreviewPage";
-import { RecipeForm } from "./components/RecipeForm";
-import { Recipe } from "./components/Recipe";
-import { Header } from "./components/Header";
-import { FavoriteRecipesList } from "./components/FavoriteRecipesList";
+import { PreviewPage } from './components/PreviewPage';
+import { RecipeForm } from './components/RecipeForm';
+import { Recipe } from './components/Recipe';
+import { Header } from './components/Header';
+import { FavoriteRecipesList } from './components/FavoriteRecipesList';
 // LocalStorageManager.getCategoriesList()
 
-// LocalStorageManager.setRecipesList(recipes)
+// LocalStorageManager.setRecipesList(recipes);
 export default function App() {
   const [recipesList, setRecipesList] = useState([
-    ...LocalStorageManager.getRecipesList()
+    ...LocalStorageManager.getRecipesList(),
   ]);
   const [favoriteIdList, setFavoriteIdList] = useState(
     LocalStorageManager.getFavorites()
