@@ -1,0 +1,41 @@
+.selectContainer {
+  width: 100%;
+  flex: 1;
+}
+.select {
+  display: flex;
+  outline: none;
+  position: relative;
+  input {
+    padding-right: 28px;
+  }
+  .arrowContainer {
+    margin: auto 0;
+    margin-right: 5px;
+    padding:0;
+    width: 15px;
+    height: 12px;
+    position: relative;
+    p {
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      display: inline;
+      position: absolute;
+      margin: 0;
+      padding: 4px;
+    }
+  }
+  .arrowUp {
+    top:0;
+    right:2px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  .arrowDown {
+    top:0;
+    right:2px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}

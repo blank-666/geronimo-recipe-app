@@ -1,0 +1,38 @@
+.container {
+  background: white;
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+  background: white;
+  min-width: fit-content;
+  position: relative;
+  padding: 70px 32px;
+  .searchContainer{
+    padding: 0 100px;
+  }
+  .searchResults {
+    .notFound {
+      margin: 100px auto;
+      .notFoundMessage {
+        margin: 0 auto;
+        p {
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0;
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }  
+      }
+      .notFoundImage {
+        margin: 0 auto;
+        margin-bottom: 20px;
+        width: 100px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

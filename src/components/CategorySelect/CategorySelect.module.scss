@@ -1,0 +1,76 @@
+.pseudoInput {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    background: white;
+    box-sizing: border-box;
+    width: 100%; 
+    min-width: 300px;
+    height: 40px;
+    margin-top: 16px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    input {
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      background: transparent;
+      padding: 0 10px;
+      margin: auto 0;
+    }
+    &:hover, &:focus {
+      box-shadow: 0 0 0 2px rgb(35, 206, 35);
+    }
+    &:focus-within {
+      border-color: rgb(40, 196, 35);
+      box-shadow: 0 0 0 1px rgb(248, 248, 248);
+    }
+  }
+
+.select {
+  display: flex;
+  height: 100%;
+  width: 100%;  
+  outline: none;
+  position: relative;
+  input {
+    padding-right: 10px;
+  }
+  .arrowContainer {
+    margin: auto 0;
+    margin-right: 5px;
+    padding:0;
+    width: 15px;
+    height: 12px;
+    position: relative;
+    p {
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      display: inline;
+      position: absolute;
+      margin:0;
+      padding: 4px;
+    }
+  }
+  .arrowUp {
+    top:0;
+    right:2px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+
+  .arrowDown {
+    top:0;
+    right:2px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+}
+
+.combinedSelect {
+  @extend .select;
+  flex:2;
+ }

@@ -1,0 +1,35 @@
+.timeInput { 
+  display: flex;
+    align-items: baseline;
+    background: white;
+    box-sizing: border-box;
+    width: 120px;
+    min-width: 120px;
+    height: 31px;
+    margin-top: 16px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      background: transparent;
+      padding: 0 10px;
+      height: 30px;
+      &::-webkit-outer-spin-button {
+        margin-right: -8px;
+      }
+      &::-webkit-inner-spin-button {
+        margin-right: -8px;
+      }
+    }
+    &:hover, &:focus {
+      box-shadow: 0 0 0 2px rgb(35, 206, 35);
+    }
+    &:focus-within {
+      border-color: rgb(40, 196, 35);
+      box-shadow: 0 0 0 1px rgb(248, 248, 248);
+    }
+}

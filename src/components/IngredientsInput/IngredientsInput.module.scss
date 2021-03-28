@@ -1,0 +1,83 @@
+.ingredientContainer {
+  position: relative;
+  .pseudoInput {
+    margin: 16px auto 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: baseline;
+    background: white;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 300px;
+    height: 40px;
+    margin-top: 16px;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        background: transparent;
+        padding: 0 10px;
+        height: 39px;
+      }
+      &:hover, &:focus {
+        box-shadow: 0 0 0 2px rgb(35, 206, 35);
+      }
+      &:focus-within {
+        border-color: rgb(40, 196, 35);
+        box-shadow: 0 0 0 1px rgb(248, 248, 248);
+      }
+    }
+    .removeItem {
+      position: absolute;
+      left: 90%;
+      top: 0;
+      button {
+        cursor: pointer;
+        outline: none;
+        border: none;
+        color: rgb(0, 0, 0);
+        font-size: 20px;
+        background: none;
+        &:hover {
+          background: none;
+          color: rgb(252, 252, 252);
+          text-shadow: 0 0 1px black;
+        }
+      }
+    }
+    .addItem {
+        margin: 8px 0;
+    }
+}
+
+.ingredientsList {
+  margin: 0 auto;
+  width: 50%;
+  min-width: 380px;
+  margin-top: 10px;
+  padding: 1px 10px 17px 1px;
+  background: rgb(40, 167, 35);
+  border-radius:5px;
+  .pseudoInput {
+    width: 80%;
+    &:hover, &:focus {
+    box-shadow: 0 0 0 2px rgb(35, 206, 35);
+  }
+  &:focus-within {
+    border-color: rgb(40, 196, 35);
+    box-shadow: 0 0 0 1px rgb(248, 248, 248);
+  }
+  }
+  .errorMessage {
+    color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10%;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+}

@@ -1,0 +1,66 @@
+.container {
+  background: white;
+  display: flex;
+  flex-direction: column; 
+  width: 100%; 
+  background: white;
+  min-width: fit-content;
+  position: relative;
+  .header {
+    display: block;
+    padding: 72px 0 30px;
+    text-align: center;
+    margin: 0 auto;
+    width: 800px;
+    &:after {
+      position: absolute;
+      left: 0;
+      top: 250px;
+      content:'';
+      width: 100%;
+      border-bottom: 10px solid #f2f2f2;
+    }
+    .bookmark {
+      position: absolute;
+      left: 65px;
+      top: -2px;
+      width: 80px;
+      img {
+        width: 100%
+      }
+    }
+    .title {
+      font-family: Roboto,sans-serif;
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 1.2;
+      margin-bottom: 0;
+    }
+    .comment {
+      padding: 0 250px;
+      margin-bottom: 30px;
+      font: 700 13px/25px PT Serif,Georgia,serif;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+  .content {
+    padding: 70px 32px;
+    .notFound {
+      margin: 0 auto; 
+      .defaultImage {
+        margin: 0 auto;
+        width: 190px;
+        margin-bottom: 40px;
+        img {
+          width: 100%;
+        }
+      }
+      .defaultMessage {
+        width: 600px;
+        margin: 0 auto 20px;
+        font-size: 16px;
+      }
+    }
+  }
+}

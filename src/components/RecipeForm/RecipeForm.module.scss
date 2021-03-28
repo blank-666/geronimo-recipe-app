@@ -1,0 +1,76 @@
+.container {
+  font-family: "Verdana", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-width: 900px;
+  // min-width: fit-content;
+  margin: 0 auto; 
+  width: 100%;  
+  // min-width: 400px;
+  padding: 70px 32px; 
+  background: rgb(255, 255, 255);
+  position: relative;
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+    .title {
+      font: 50px 'Roboto', sans-serif;
+      font-weight: 900;
+      max-width: 800px;
+      margin: 0 auto 35px;
+    }
+  }
+
+  .errorMessage {
+    color: red;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+  .submit {
+    width: 50%;
+    font-size: 18px;
+    padding: 10px 15px;
+  }
+  img {
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 300px;
+  }
+  button {
+    background: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 2px solid #24af30;
+    outline: none;
+    border-radius: 3px;
+    font: 12px Roboto,sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    &:hover {
+      color: #fff;
+      background: #24af30;
+      text-shadow: none;
+    }
+  }
+  .inputContainer { 
+    margin: 0 auto;
+    text-align: left; 
+    padding: 8px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    width: 70%;
+    min-width: 350px;
+    box-sizing: border-box;
+    &:focus-within {
+      background: #2ad638;
+    }
+    .label {
+      // font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

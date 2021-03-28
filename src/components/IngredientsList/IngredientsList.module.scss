@@ -1,0 +1,218 @@
+.ingredientsList {
+  font: 14px/2 PT Serif,Georgia,serif;
+  width: 620px;
+  margin-bottom: 60px;
+  font-size: 13px; 
+  line-height: 23px;
+  .ingredientsHeader {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 38px;
+    height: 25px;
+    p {
+      display: inline-block;
+      float: left;
+      height: 38px;
+      line-height: 38px;
+      text-transform: uppercase;
+      font-family: PT Serif,Georgia,serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin: 0;
+      padding: 0;
+    }
+    .portionsControl {
+      float: right;
+      span {
+        vertical-align: middle;
+        font: 8px/1 'Roboto',sans-serif;
+        letter-spacing: 1px;
+        margin-right: 17px;
+        text-transform: uppercase;
+      }
+      button {
+        display: inline-block;
+        height: 38px;
+        cursor: pointer;
+        padding: 0;
+        font-size: 20px;
+        outline: none;
+        background: none;
+        border:none;
+        vertical-align: middle;
+        &:nth-child(2) {
+          margin-right: 15px;
+        }
+        &:nth-child(4) {
+          margin-left: 15px;
+        }
+      }
+      input {
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        border-radius: 3px;
+        border: 1px solid #d9d9d9;
+        outline: none;
+        text-align: center;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+  }
+  .content {
+    width: 100%;
+    margin-bottom: 20px;
+    letter-spacing: .1em;
+    vertical-align: baseline;
+    .contentItem {
+      vertical-align: middle;
+      height: 23px;
+      position: relative;
+      &:before {
+        left: 0;
+        position: absolute;
+        bottom: 6px;
+        width: 100%;
+        content: "";
+        border-bottom: 1px solid #b8b8b8;
+      }
+      .name {
+        float: left;
+        text-align: left;
+        position: relative;
+        display: inline;
+        font-size: 1.2em;
+        background: #fff;
+        z-index: 1;
+        padding-right: 10px;
+        
+        .customCheckbox {
+          input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            &:checked + span{
+              &::before {
+                border-color: #388f30;
+                background-color: #49b83e;
+                background-image: url('https://www.iconsdb.com/icons/preview/white/checkmark-xxl.png');              
+              }
+            }
+          }
+          span {
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+            &:before {
+              content: '';
+              display: inline-block;
+              width: 1em;
+              height: 1em;
+              flex-shrink: 0;
+              flex-grow: 0;
+              border: 1px solid #adb5bd;
+              border-radius: 0.25em;
+              margin-right: 0.5em;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: 50% 50%;
+            }
+            &:hover {
+              &:before {
+                border-color: #86f353;
+              }
+            }
+            &:active {
+              &:before {
+                background-color: #86f353;
+                border-color: #86f353;
+              }
+            }
+          }
+        }
+      }
+      .amount {
+        font: 14px/1 'Roboto',sans-serif;
+        padding-top: 5px;
+        position: relative;
+        display: inline;
+        float: right;
+        text-align: right;
+        vertical-align: middle;
+        background: #fff;
+        z-index: 1;
+        padding-left: 10px;
+        letter-spacing: normal;
+      }
+    }
+    .checkedContentItem {
+      @extend .contentItem;
+      .name, .amount {
+          text-decoration: rgba(168, 164, 164, 0.63) line-through;
+          color:rgb(141, 135, 135);
+      }
+    }
+  }
+}
+
+.miniIngrediensList {
+  @extend .ingredientsList;
+  width: 100%;
+  margin-bottom:0;
+  .ingredientsHeader {
+    padding-bottom: 22px;
+    p {
+      font-size: 12px;
+      height: 30px;
+      line-height: 30px;
+    }
+    .portionsControl {
+      button {
+        height: 30px;
+        font-size: 14px;
+      }
+      input {
+        width: 30px;
+        height: 30px;
+        border-radius: 2px;
+      }
+    }
+  }
+  .content {
+    .contentItem {
+      height: 18px;
+      &:before {
+        bottom: 2px;
+      }
+      .name {
+        font-size: 10px;
+      }
+      .amount {
+        font: 10px 'Roboto',sans-serif;
+        padding-top: 6px;
+        letter-spacing: .5px;
+      }
+    }
+  }
+  .toRecipeButton {
+    margin: 0;
+    padding: 0;
+    display: block;
+    border: 1px solid #24af30;
+    border-radius: 2px;
+    font: 10px/30px Roboto,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    transition: .2s;
+    &:hover {
+      background: #24af30;
+      color: white;
+    }
+  }
+}
