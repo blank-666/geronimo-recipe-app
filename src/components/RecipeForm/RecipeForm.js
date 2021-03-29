@@ -30,13 +30,16 @@ const initialRecipe = {
   duration: "",
   portions: "",
   autor: "",
-  description: []
+  description: [],
 };
 
-export function RecipeForm({ addRecipe, initialCategories }) {
+export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
   const [recipe, setRecipe] = useState(initialRecipe);
-  const [categories, setCategories] = useState(initialCategories);
   const [errors, setErrors] = useState({});
+
+  let categoriesOptions = categoriesList.filter(
+    (category) => !recipe.categories.includes(category)
+  );
 
   function formatName(name) {
     const editedName = name[0].toUpperCase() + name.slice(1).toLowerCase();
@@ -46,12 +49,9 @@ export function RecipeForm({ addRecipe, initialCategories }) {
 
   function addCustomCategory(category) {
     category = formatName(category);
-    const initialCategories = LocalStorageManager.getCategoriesList();
-    if (category && !initialCategories.includes(category)) {
-      const updateCategories = [...categories, category];
-
-      LocalStorageManager.setCategoriesList(updateCategories);
-      setCategories(LocalStorageManager.getCategoriesList());
+    if (category && !categoriesList.includes(category)) {
+      const updateCategories = [...categoriesList, category];
+      setCategoriesList(updateCategories);
       addCategory(category);
     }
   }
@@ -59,11 +59,8 @@ export function RecipeForm({ addRecipe, initialCategories }) {
   function addCategory(selectedCategory) {
     setRecipe({
       ...recipe,
-      categories: [...recipe.categories, selectedCategory]
+      categories: [...recipe.categories, selectedCategory],
     });
-    setCategories(
-      categories.filter((category) => category !== selectedCategory)
-    );
   }
 
   function removeCategory(selectedCategory) {
@@ -72,7 +69,7 @@ export function RecipeForm({ addRecipe, initialCategories }) {
     );
     setRecipe({ ...recipe, categories: updatedCategories });
     // move this to select maybe???\/
-    setCategories([...categories, selectedCategory]);
+    categoriesOptions = [...categoriesList, selectedCategory];
   }
 
   function handleInputChange(value, field) {
@@ -97,44 +94,44 @@ export function RecipeForm({ addRecipe, initialCategories }) {
       ingredients: "",
       description: "",
       ingredientsErrors: [],
-      descriptionErrors: []
+      descriptionErrors: [],
     };
     let formIsValid = true;
 
     const required = (overrides) => ({
       isValid: (value) => !!value,
       message: "Required",
-      ...overrides
+      ...overrides,
     });
 
     const isString = (overrides) => ({
       isValid: (value) => /^([а-яёА-Я]+|[ a-zA-Z]+)/.test(value),
       message: "Must be a string",
-      ...overrides
+      ...overrides,
     });
 
     const isNotEmpty = (overrides) => ({
       isValid: (value) => value.length > 0,
       message: "Add at least one item",
-      ...overrides
+      ...overrides,
     });
 
     const isPositiveNumber = (overrides) => ({
       isValid: (value) => value > 0,
       message: "Cannot be null or negative number",
-      ...overrides
+      ...overrides,
     });
 
     const isWord = (overrides) => ({
       isValid: (value) => value.length >= 3,
       message: "At least three letters",
-      ...overrides
+      ...overrides,
     });
 
     const inValidRange = (overrides) => ({
       isValid: (value) => value >= 1 && value <= 15,
       message: "The number must be between 1 and 15",
-      ...overrides
+      ...overrides,
     });
 
     const schema = {
@@ -142,25 +139,25 @@ export function RecipeForm({ addRecipe, initialCategories }) {
         rules: [
           required({ message: "Cannot be empty" }),
           isString({ message: "Only letters" }),
-          isWord()
-        ]
+          isWord(),
+        ],
       },
       duration: {
         rules: [
           required({ message: "Cannot be empty" }),
           isPositiveNumber({
-            message: "Duration cannot be null or negative number"
-          })
-        ]
+            message: "Duration cannot be null or negative number",
+          }),
+        ],
       },
       portions: {
         rules: [
           required({ message: "Cannot be empty" }),
           isPositiveNumber({
-            message: "Portions cannot be null or negative number"
+            message: "Portions cannot be null or negative number",
           }),
-          inValidRange()
-        ]
+          inValidRange(),
+        ],
       },
       ingredients: {
         rules: [isNotEmpty({ message: "Add at least one ingredient" })],
@@ -168,16 +165,16 @@ export function RecipeForm({ addRecipe, initialCategories }) {
           rules: [
             required({ message: "Cannot be empty" }),
             isString({ message: "Only letters" }),
-            isWord()
-          ]
-        }
+            isWord(),
+          ],
+        },
       },
       description: {
         rules: [isNotEmpty({ message: "Add at least one description step" })],
         descriptionText: {
-          rules: [required({ message: "Cannot be empty" }), isWord()]
-        }
-      }
+          rules: [required({ message: "Cannot be empty" }), isWord()],
+        },
+      },
     };
 
     for (let key in errors) {
@@ -196,7 +193,7 @@ export function RecipeForm({ addRecipe, initialCategories }) {
             if (errorMessage) {
               const error = {
                 id: index,
-                message: errorMessage
+                message: errorMessage,
               };
               errors.ingredientsErrors.push(error);
             }
@@ -210,7 +207,7 @@ export function RecipeForm({ addRecipe, initialCategories }) {
             if (errorMessage) {
               const error = {
                 id: index,
-                message: errorMessage
+                message: errorMessage,
               };
               errors.descriptionErrors.push(error);
             }
@@ -283,7 +280,7 @@ export function RecipeForm({ addRecipe, initialCategories }) {
         <Container label="Categories">
           <CategorySelect
             selectedCategories={recipe.categories}
-            options={categories}
+            options={categoriesOptions}
             addCategory={addCategory}
             removeCategory={removeCategory}
             addCustomCategory={addCustomCategory}
@@ -353,17 +350,6 @@ export function RecipeForm({ addRecipe, initialCategories }) {
         <button className={s.submit} type="submit">
           Add recipe
         </button>
-
-        {/* <Container label="Search">
-        <SearchInput
-          inputPlaceholder="Search recipe"
-          selectPlaceholder="Choose category"
-          addCategory={addCategory}
-          removeCategory={removeCategory}
-          selectedCategories={recipe.categories}
-          options={categories}
-        />
-      </Container> */}
       </form>
     </div>
   );

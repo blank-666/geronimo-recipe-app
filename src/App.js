@@ -1,17 +1,19 @@
-import './styles.css';
-import { useEffect, useState } from 'react';
-import { LocalStorageManager } from './LocalStorageManager';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { recipes, categoriesList } from './data';
+import "./styles.css";
+import { useEffect, useState } from "react";
+import { LocalStorageManager } from "./LocalStorageManager";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { recipes, categoriesList } from "./data";
 //
-import { PreviewPage } from './components/PreviewPage';
-import { RecipeForm } from './components/RecipeForm';
-import { Recipe } from './components/Recipe';
-import { Header } from './components/Header';
-import { FavoriteRecipesList } from './components/FavoriteRecipesList';
+import { PreviewPage } from "./components/PreviewPage";
+import { RecipeForm } from "./components/RecipeForm";
+import { Recipe } from "./components/Recipe";
+import { Header } from "./components/Header";
+import { FavoriteRecipesList } from "./components/FavoriteRecipesList";
 // LocalStorageManager.getCategoriesList()
 
 // LocalStorageManager.setRecipesList(recipes);
+// LocalStorageManager.setCategoriesList(categoriesList);
+
 export default function App() {
   const [recipesList, setRecipesList] = useState([
     ...LocalStorageManager.getRecipesList(),
@@ -19,6 +21,17 @@ export default function App() {
   const [favoriteIdList, setFavoriteIdList] = useState(
     LocalStorageManager.getFavorites()
   );
+  const [categoriesList, setCategoriesList] = useState(
+    LocalStorageManager.getCategoriesList()
+  );
+
+  useEffect(() => {
+    LocalStorageManager.setCategoriesList(categoriesList);
+  }, [categoriesList]);
+
+  useEffect(() => {
+    console.log("categoriesList", categoriesList);
+  }, [categoriesList]);
 
   function addRecipe(newRecipe) {
     const updatedRecipesList = [...recipesList, newRecipe];
@@ -50,6 +63,7 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <PreviewPage
+              categoriesList={categoriesList}
               recipesList={recipesList}
               addFavorite={addFavorite}
               removeFavorite={removeFavorite}
@@ -59,7 +73,8 @@ export default function App() {
           <Route path="/form">
             <RecipeForm
               addRecipe={addRecipe}
-              initialCategories={categoriesList}
+              categoriesList={categoriesList}
+              setCategoriesList={setCategoriesList}
             />
           </Route>
           <Route path="/favorites">
@@ -79,6 +94,7 @@ export default function App() {
           </Route>
           <Route path="/category/:tag">
             <PreviewPage
+              categoriesList={categoriesList}
               recipesList={recipesList}
               addFavorite={addFavorite}
               removeFavorite={removeFavorite}

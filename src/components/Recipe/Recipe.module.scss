@@ -3,11 +3,12 @@
 .container {
   font-family: "Verdana", sans-serif;
   display: flex;
-  flex-direction: column; 
-  width: 80%; 
-  padding: 70px 32px; 
+  flex-direction: column;
+  width: 100%;
+  padding: 70px 32px;
   background: white;
   min-width: fit-content;
+  box-sizing: border-box;
 
   .header {
     position: relative;
@@ -16,7 +17,7 @@
     text-align: center;
     .categories {
       margin-bottom: 20px;
-      font-family:  'Roboto', sans-serif;
+      font-family: "Roboto", sans-serif;
       font-size: 8px;
       font-weight: 700;
       letter-spacing: 1px;
@@ -28,7 +29,7 @@
         vertical-align: top;
         &:last-child {
           a {
-            &:after{
+            &:after {
               content: "";
             }
           }
@@ -40,19 +41,19 @@
           &:after {
             content: "\B7";
             display: inline-block;
-            font: 15px/9px 'Roboto',sans-serif;
+            font: 15px/9px "Roboto", sans-serif;
             font-weight: 700;
             margin: 0 2px;
             vertical-align: top;
           }
-            &:hover {
-              text-decoration: underline;
-            }
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
     .title {
-      font: 50px 'Roboto', sans-serif;
+      font: 50px "Roboto", sans-serif;
       font-weight: 900;
       max-width: 800px;
       margin: 0 auto 35px;
@@ -106,12 +107,12 @@
         cursor: pointer;
         color: #000;
         text-decoration: none;
-        transition: .2s;
-          span {
-            font: 10px 'Roboto',sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
+        transition: 0.2s;
+        span {
+          font: 10px "Roboto", sans-serif;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
         &:hover {
           background: #24af30;
           color: white;
@@ -144,47 +145,37 @@
       position: absolute;
       top: -15px;
       padding: 0 12px;
-      font: 10px/1 'Roboto',sans-serif;
+      font: 10px/1 "Roboto", sans-serif;
       text-transform: uppercase;
-      letter-spacing: .1em;
+      letter-spacing: 0.1em;
       background: #fff;
       transform: translateX(-50%);
       left: 50%;
     }
-      span {
+    span {
       position: absolute;
       display: block;
-      font: 14px Roboto,sans-serif;
+      font: 14px Roboto, sans-serif;
       width: 60%;
       color: rgb(0, 0, 0);
       text-decoration: none;
     }
   }
-  
+
   .descriptionContainer {
+    width: 100%;
+    box-sizing: border-box;
     margin: 0 auto 50px;
     font-size: 18px;
     line-height: 33px;
     border: 1px solid #b8b8b8;
     padding: 40px 20px 0 20px;
     position: relative;
-    // .descriptionTitle {
-    //   display: inline-block;
-    //   text-align: left;
-    //   width: 100%;
-    //   line-height: 38px;
-    //   text-transform: uppercase;
-    //   font-family: PT Serif,Georgia,serif;
-    //   font-weight: 700;
-    //   font-size: 18px;
-    //   letter-spacing: 1px;
-    //   margin-bottom: 50px;
-    // }
     .descriptionTitle {
       display: inline-block;
       line-height: 38px;
       text-transform: uppercase;
-      font-family: PT Serif,Georgia,serif;
+      font-family: PT Serif, Georgia, serif;
       font-weight: 700;
       font-size: 18px;
       letter-spacing: 1px;
@@ -218,12 +209,12 @@
           overflow: hidden;
           text-align: left;
           .stepLabel {
-            font: 14px/2 PT Serif,Georgia,serif;
-            font-weight:700;
+            font: 14px/2 PT Serif, Georgia, serif;
+            font-weight: 700;
             padding-right: 15px;
           }
           .instruction {
-            font: 14px/2 PT Serif,Georgia,serif;
+            font: 14px/2 PT Serif, Georgia, serif;
             white-space: normal;
             width: 444px;
           }

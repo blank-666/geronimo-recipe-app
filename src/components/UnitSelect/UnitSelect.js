@@ -11,6 +11,7 @@ export function UnitSelect({ value, options, onChange }) {
   }, [value]);
 
   function showOptions() {
+    setSearchWord("");
     setActive(true);
   }
 

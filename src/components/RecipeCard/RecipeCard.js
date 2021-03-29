@@ -13,7 +13,7 @@ export function RecipeCard({
   recipe,
   addFavorite,
   removeFavorite,
-  isFavorite
+  isFavorite,
 }) {
   const [ingredientsActive, setIngredientsActive] = useState(false);
 
@@ -68,7 +68,7 @@ export function RecipeCard({
             <div
               className={classnames({
                 [s.dropdownVisible]: ingredientsActive,
-                [s.dropdownHidden]: !ingredientsActive
+                [s.dropdownHidden]: !ingredientsActive,
               })}
             >
               <div className={s.dropdownContent}>

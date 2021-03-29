@@ -2,19 +2,18 @@
   font-family: "Verdana", sans-serif;
   display: flex;
   flex-direction: column;
-  min-width: 900px;
-  // min-width: fit-content;
-  margin: 0 auto; 
-  width: 100%;  
-  // min-width: 400px;
-  padding: 70px 32px; 
+  min-width: fit-content;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 70px 32px;
   background: rgb(255, 255, 255);
   position: relative;
   .header {
     text-align: center;
     margin-bottom: 30px;
     .title {
-      font: 50px 'Roboto', sans-serif;
+      font: 50px "Roboto", sans-serif;
       font-weight: 900;
       max-width: 800px;
       margin: 0 auto 35px;
@@ -45,7 +44,7 @@
     border: 2px solid #24af30;
     outline: none;
     border-radius: 3px;
-    font: 12px Roboto,sans-serif;
+    font: 12px Roboto, sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -56,9 +55,9 @@
       text-shadow: none;
     }
   }
-  .inputContainer { 
+  .inputContainer {
     margin: 0 auto;
-    text-align: left; 
+    text-align: left;
     padding: 8px;
     margin-bottom: 16px;
     border-radius: 5px;

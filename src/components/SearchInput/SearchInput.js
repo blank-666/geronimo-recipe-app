@@ -10,7 +10,6 @@ export function SearchInput({
   selectedCategories,
   options,
   value,
-  onChange
 }) {
   return (
     <>

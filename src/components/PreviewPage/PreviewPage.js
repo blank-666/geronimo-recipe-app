@@ -11,17 +11,20 @@ const initialSearchFilter = { word: "", categories: [] };
 let firstRender = true;
 
 export function PreviewPage({
+  categoriesList,
   recipesList,
   addFavorite,
   removeFavorite,
-  favoriteIdList
+  favoriteIdList,
 }) {
   const [foundRecipes, setFoundRecipes] = useState(recipesList);
   const [searchFilter, setSearchFilter] = useState(initialSearchFilter);
-  const [categories, setCategories] = useState(
-    LocalStorageManager.getCategoriesList()
-  );
+
   let { tag } = useParams();
+
+  let categoriesOptions = categoriesList.filter(
+    (category) => !searchFilter.categories.includes(category)
+  );
 
   useEffect(() => {
     if (!!tag && !searchFilter.categories.includes(tag)) {
@@ -44,11 +47,8 @@ export function PreviewPage({
   function addCategory(selectedCategory) {
     setSearchFilter({
       ...searchFilter,
-      categories: [...searchFilter.categories, selectedCategory]
+      categories: [...searchFilter.categories, selectedCategory],
     });
-    setCategories(
-      categories.filter((category) => category !== selectedCategory)
-    );
   }
 
   function removeCategory(categoryToRemove) {
@@ -57,7 +57,7 @@ export function PreviewPage({
     );
     setSearchFilter({ ...searchFilter, categories: updatedCategories });
     // move this to select maybe???\/
-    setCategories([...categories, categoryToRemove]);
+    categoriesOptions = [...categoriesList, categoryToRemove];
   }
 
   function isMatch(categories, searchCategories) {
@@ -84,7 +84,7 @@ export function PreviewPage({
         <SearchInput
           searchWord={searchFilter.word}
           onChange={handleSearchChange}
-          options={categories}
+          options={categoriesOptions}
           selectedCategories={searchFilter.categories}
           addCategory={addCategory}
           removeCategory={removeCategory}

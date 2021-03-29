@@ -1,13 +1,14 @@
 .container {
   background: white;
   display: flex;
-  flex-direction: column; 
-  width: 100%; 
+  flex-direction: column;
+  width: 100%;
   background: white;
   min-width: fit-content;
   position: relative;
   padding: 70px 32px;
-  .searchContainer{
+  box-sizing: border-box;
+  .searchContainer {
     padding: 0 100px;
   }
   .searchResults {
@@ -23,7 +24,7 @@
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-        }  
+        }
       }
       .notFoundImage {
         margin: 0 auto;

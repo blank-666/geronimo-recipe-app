@@ -11,7 +11,7 @@ export function Recipe({
   recipes,
   favoriteIdList,
   addFavorite,
-  removeFavorite
+  removeFavorite,
 }) {
   let { id } = useParams();
   const recipe = recipes.filter((recipe) => recipe.id === id)[0];
@@ -77,12 +77,12 @@ export function Recipe({
         <ul>
           {recipe.description.map((step, index) => (
             <li key={recipe.id + "_" + index} className={s.recipeStep}>
-              {step.image && (
-                <div className={s.stepImage}>
-                  <img src={step.image} alt="" />
-                </div>
-              )}
               <div className={s.instructionContainer}>
+                {step.image && (
+                  <div className={s.stepImage}>
+                    <img src={step.image} alt="" />
+                  </div>
+                )}
                 <span className={s.stepLabel}>{index + 1}. </span>
                 <span className={s.instruction}>{step.descriptionText}</span>
               </div>
