@@ -5,16 +5,15 @@ export function RecipesList({
   recipesList,
   addFavorite,
   removeFavorite,
-  favoriteIdList
+  favoriteIdList,
 }) {
   return (
     <div className={s.recipesList}>
-      {recipesList[0] &&
+      {recipesList &&
         recipesList.map((recipe) => (
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
-            //
             addFavorite={() => addFavorite(recipe.id)}
             removeFavorite={() => removeFavorite(recipe.id)}
             isFavorite={favoriteIdList.includes(recipe.id)}

@@ -1,16 +1,13 @@
 import s from "./RecipeForm.module.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { LocalStorageManager } from "../../LocalStorageManager";
+import { postNewRecipe } from "../../api";
 //
 import { IngredientsInput } from "../IngredientsInput";
 import { DescriptionInput } from "../DescriptionInput";
 import { TimeInput } from "../TimeInput";
 import { Input } from "../Input";
 import { CategorySelect } from "../CategorySelect";
-
-// LocalStorageManager.setCategoriesList(categoriesList);
-// localStorage.clear()
 
 function Container({ label, children }) {
   return (
@@ -23,7 +20,6 @@ function Container({ label, children }) {
 
 const initialRecipe = {
   name: "",
-  id: "",
   image: "",
   categories: [],
   ingredients: [],
@@ -33,27 +29,17 @@ const initialRecipe = {
   description: [],
 };
 
-export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
+export function RecipeForm({ addRecipe, initialCategoriesList }) {
   const [recipe, setRecipe] = useState(initialRecipe);
   const [errors, setErrors] = useState({});
 
-  let categoriesOptions = categoriesList.filter(
-    (category) => !recipe.categories.includes(category)
-  );
-
   function formatName(name) {
     const editedName = name[0].toUpperCase() + name.slice(1).toLowerCase();
-
     return editedName;
   }
 
   function addCustomCategory(category) {
-    category = formatName(category);
-    if (category && !categoriesList.includes(category)) {
-      const updateCategories = [...categoriesList, category];
-      setCategoriesList(updateCategories);
-      addCategory(category);
-    }
+    addCategory(formatName(category));
   }
 
   function addCategory(selectedCategory) {
@@ -63,17 +49,15 @@ export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
     });
   }
 
-  function removeCategory(selectedCategory) {
+  function removeCategory(categoryToRemove) {
     const updatedCategories = recipe.categories.filter(
-      (category) => category !== selectedCategory
+      (category) => category !== categoryToRemove
     );
     setRecipe({ ...recipe, categories: updatedCategories });
-    // move this to select maybe???\/
-    categoriesOptions = [...categoriesList, selectedCategory];
   }
 
   function handleInputChange(value, field) {
-    setRecipe({ ...recipe, [field]: value, id: uuid() });
+    setRecipe({ ...recipe, [field]: value });
   }
 
   function setRecipeItems(updatedItems, field) {
@@ -240,9 +224,14 @@ export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
     setRecipe(initialRecipe);
   }
 
+  async function postRecipe() {
+    await postNewRecipe(recipe);
+  }
+
   function handleSubmit(e) {
     if (validate()) {
-      addRecipe(recipe);
+      postRecipe();
+      // addRecipe(recipe);
       reset();
       e.preventDefault();
     } else {
@@ -251,16 +240,17 @@ export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
     }
   }
 
-  // localStorage.clear()
-  //console.log(recipe.duration);
-  // useEffect(() => {
-  //console.log(recipe.ingredients);
-  // }, [newIngredient]);
-  // console.log(errors);
-  // console.log(search);
-  // function handleSearchChange(e) {
-  //   setSearch(e.target.value);
+  // function handleSubmit(e) {
+  //   if (validate()) {
+  //     addRecipe(recipe);
+  //     reset();
+  //     e.preventDefault();
+  //   } else {
+  //     e.preventDefault();
+  //     alert("No no no");
+  //   }
   // }
+
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -279,8 +269,8 @@ export function RecipeForm({ addRecipe, categoriesList, setCategoriesList }) {
 
         <Container label="Categories">
           <CategorySelect
+            initialOptions={initialCategoriesList}
             selectedCategories={recipe.categories}
-            options={categoriesOptions}
             addCategory={addCategory}
             removeCategory={removeCategory}
             addCustomCategory={addCustomCategory}

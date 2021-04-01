@@ -1,1 +1,1 @@
-export * from "./IngredientsInput";
+export { IngredientsInput } from "./IngredientsInput";

@@ -1,6 +1,6 @@
 import s from "./Tags.module.scss";
 
-export function Tags({ selectedCategories, removeCategory, search }) {
+export function Tags({ selectedCategories, removeCategory }) {
   return (
     <div className={s.tagsContainer}>
       {selectedCategories &&

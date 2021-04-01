@@ -1,89 +1,12 @@
-// import s from "./RecipeForm/RecipeForm.module.scss";
 import s from "./IngredientsInput.module.scss";
 import { v4 as uuid } from "uuid";
-import classnames from "classnames";
 import { useState } from "react";
 import { Input } from "../Input/Input";
 import { UnitSelect } from "../UnitSelect";
+import { EditableIngredientsList } from "./EditableIngredientsList";
 
 const initialIngredient = { name: "", unit: "", amount: "" };
-
-function IngredientsList({
-  ingredientsList,
-  setIngredientsList,
-  findErrors,
-  errors,
-}) {
-  function editIngredient(editedItem, field, index) {
-    const updatedIngredients = [...ingredientsList];
-    updatedIngredients[index][field] = editedItem;
-    setIngredientsList(updatedIngredients);
-  }
-  function removeIngredient(idToRemove) {
-    const updatedIngredients = ingredientsList.filter(
-      ({ id }) => id !== idToRemove
-    );
-    setIngredientsList(updatedIngredients);
-  }
-
-  return (
-    <div className={s.ingredientsList}>
-      {ingredientsList.map((ingredient, index) => (
-        <div key={ingredient.id}>
-          <div className={s.ingredientContainer}>
-            <div className={s.pseudoInput}>
-              <Input
-                type="text"
-                multiple
-                placeholder="Name"
-                value={ingredient.name}
-                onChange={(e) => editIngredient(e.target.value, "name", index)}
-                autoComplete="off"
-              />
-              <Input
-                type="number"
-                multiple
-                placeholder="Amount"
-                value={ingredient.amount}
-                onChange={(e) =>
-                  editIngredient(e.target.value, "amount", index)
-                }
-                autoComplete="off"
-              />
-              <UnitSelect
-                options={[
-                  "g",
-                  "kg",
-                  "ml",
-                  "l",
-                  "tbsp",
-                  "tspn",
-                  "pieces",
-                  "pinch",
-                ]}
-                value={ingredient.unit}
-                edit="true"
-                onChange={(e) => editIngredient(e.target.value, "unit", index)}
-              />
-            </div>
-            <div className={s.removeItem}>
-              <button
-                type="button"
-                onClick={() => removeIngredient(ingredient.id)}
-              >
-                ✖
-              </button>
-            </div>
-          </div>
-          <p className={classnames(s.errorMessage, s.ingredientError)}>
-            {errors &&
-              findErrors(errors, index).map((errorMessage) => errorMessage)}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-}
+const UNITS = ["g", "kg", "ml", "l", "tbsp", "tspn", "pieces", "pinch"];
 
 export function IngredientsInput({
   isEdit,
@@ -107,6 +30,18 @@ export function IngredientsInput({
     setNewIngredient(initialIngredient);
   }
 
+  function editIngredient(editedItem, field, index) {
+    const updatedIngredients = [...ingredientsList];
+    updatedIngredients[index][field] = editedItem;
+    setIngredientsList(updatedIngredients);
+  }
+  function removeIngredient(idToRemove) {
+    const updatedIngredients = ingredientsList.filter(
+      ({ id }) => id !== idToRemove
+    );
+    setIngredientsList(updatedIngredients);
+  }
+
   return (
     <>
       <div className={s.ingredientContainer}>
@@ -128,7 +63,7 @@ export function IngredientsInput({
             autoComplete="off"
           />
           <UnitSelect
-            options={["g", "kg", "ml", "l", "tbsp", "tspn", "pieces"]}
+            options={UNITS}
             value={newIngredient.unit}
             edit={isEdit}
             onChange={(e) => ingredientHandleChange(e.target.value, "unit")}
@@ -141,11 +76,13 @@ export function IngredientsInput({
         </div>
       </div>
       {ingredientsList[0] && (
-        <IngredientsList
+        <EditableIngredientsList
           ingredientsList={ingredientsList}
-          setIngredientsList={setIngredientsList}
+          editIngredient={editIngredient}
+          removeIngredient={removeIngredient}
           findErrors={findErrors}
           errors={errors}
+          options={UNITS}
         />
       )}
     </>

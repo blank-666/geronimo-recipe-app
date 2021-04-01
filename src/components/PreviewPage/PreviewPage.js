@@ -1,41 +1,37 @@
 import { useState, useEffect } from "react";
-import { LocalStorageManager } from "../../LocalStorageManager";
 import s from "./PreviewPage.module.scss";
 import sad from "../../icons/sad.svg";
-import { useParams } from "react-router-dom";
 //
 import { SearchInput } from "../SearchInput";
 import { RecipesList } from "../RecipesList";
+import { searchRecipes } from "../../api";
 
 const initialSearchFilter = { word: "", categories: [] };
 let firstRender = true;
 
 export function PreviewPage({
-  categoriesList,
-  recipesList,
+  initialCategoriesList,
+  initialRecipesList,
   addFavorite,
   removeFavorite,
   favoriteIdList,
 }) {
-  const [foundRecipes, setFoundRecipes] = useState(recipesList);
+  const [searchResults, setSearchResults] = useState(initialRecipesList);
   const [searchFilter, setSearchFilter] = useState(initialSearchFilter);
-
-  let { tag } = useParams();
-
-  let categoriesOptions = categoriesList.filter(
-    (category) => !searchFilter.categories.includes(category)
-  );
-
-  useEffect(() => {
-    if (!!tag && !searchFilter.categories.includes(tag)) {
-      addCategory(tag);
-      searchRecipe();
-    }
-  }, [tag]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!firstRender) {
-      searchRecipe();
+      async function fetchData() {
+        setIsLoading(true);
+        const results = await searchRecipes(
+          searchFilter.word,
+          searchFilter.categories
+        );
+        setSearchResults(results);
+        setIsLoading(false);
+      }
+      fetchData();
     }
     firstRender = false;
   }, [searchFilter]);
@@ -56,35 +52,15 @@ export function PreviewPage({
       (category) => category !== categoryToRemove
     );
     setSearchFilter({ ...searchFilter, categories: updatedCategories });
-    // move this to select maybe???\/
-    categoriesOptions = [...categoriesList, categoryToRemove];
   }
 
-  function isMatch(categories, searchCategories) {
-    const result = searchCategories
-      .map((searchCategory) => {
-        return categories.includes(searchCategory);
-      })
-      .every((match) => !!match);
-
-    return result;
-  }
-
-  function searchRecipe() {
-    const updatedRecipesList = recipesList.filter(
-      (recipe) =>
-        recipe.name.toLowerCase().includes(searchFilter.word.toLowerCase()) &&
-        isMatch(recipe.categories, searchFilter.categories)
-    );
-    setFoundRecipes(updatedRecipesList);
-  }
   return (
     <div className={s.container}>
       <div className={s.searchContainer}>
         <SearchInput
           searchWord={searchFilter.word}
           onChange={handleSearchChange}
-          options={categoriesOptions}
+          options={initialCategoriesList}
           selectedCategories={searchFilter.categories}
           addCategory={addCategory}
           removeCategory={removeCategory}
@@ -92,20 +68,22 @@ export function PreviewPage({
       </div>
 
       <div className={s.searchResults}>
-        {foundRecipes[0] ? (
+        {searchResults && searchResults[0] ? (
           <RecipesList
-            recipesList={foundRecipes}
+            recipesList={searchResults}
             addFavorite={addFavorite}
             removeFavorite={removeFavorite}
             favoriteIdList={favoriteIdList}
           />
+        ) : isLoading ? (
+          <p className={s.loader} />
         ) : (
           <div className={s.notFound}>
             <div className={s.notFoundImage}>
               <img src={sad} alt="" />
             </div>
             <h1 className={s.notFoundMessage}>
-              No results for '<p>{searchFilter.word}</p>'
+              No results {searchFilter.word && <p>for '{searchFilter.word}'</p>}
             </h1>
           </div>
         )}

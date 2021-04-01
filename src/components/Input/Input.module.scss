@@ -2,7 +2,7 @@
   display: flex;
   background: white;
   align-items: baseline;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   width: 100%;
   min-width: 300px;
   height: 40px;
@@ -10,7 +10,8 @@
   border: 1px solid grey;
   border-radius: 5px;
 
-  input, textArea {
+  input,
+  textArea {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -20,7 +21,8 @@
     padding: 0 10px;
     margin: auto 0;
   }
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     box-shadow: 0 0 0 2px rgb(35, 206, 35);
   }
   &:focus-within {
@@ -33,4 +35,5 @@
   vertical-align: middle;
   border-right: 1px solid grey;
   flex: 2;
+  padding-right: 10px;
 }

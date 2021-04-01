@@ -14,44 +14,45 @@
     border: 1px solid grey;
     border-radius: 5px;
 
-      input {
-        width: 100%;
-        box-sizing: border-box;
-        outline: none;
-        border: none;
-        background: transparent;
-        padding: 0 10px;
-        height: 39px;
-      }
-      &:hover, &:focus {
-        box-shadow: 0 0 0 2px rgb(35, 206, 35);
-      }
-      &:focus-within {
-        border-color: rgb(40, 196, 35);
-        box-shadow: 0 0 0 1px rgb(248, 248, 248);
-      }
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      outline: none;
+      border: none;
+      background: transparent;
+      padding: 0 10px;
+      height: 39px;
     }
-    .removeItem {
-      position: absolute;
-      left: 90%;
-      top: 0;
-      button {
-        cursor: pointer;
-        outline: none;
-        border: none;
-        color: rgb(0, 0, 0);
-        font-size: 20px;
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 0 2px rgb(35, 206, 35);
+    }
+    &:focus-within {
+      border-color: rgb(40, 196, 35);
+      box-shadow: 0 0 0 1px rgb(248, 248, 248);
+    }
+  }
+  .removeItem {
+    position: absolute;
+    left: 90%;
+    top: 0;
+    button {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      color: rgb(0, 0, 0);
+      font-size: 20px;
+      background: none;
+      &:hover {
         background: none;
-        &:hover {
-          background: none;
-          color: rgb(252, 252, 252);
-          text-shadow: 0 0 1px black;
-        }
+        color: rgb(252, 252, 252);
+        text-shadow: 0 0 1px black;
       }
     }
-    .addItem {
-        margin: 8px 0;
-    }
+  }
+  .addItem {
+    margin: 8px 0;
+  }
 }
 
 .ingredientsList {
@@ -61,16 +62,17 @@
   margin-top: 10px;
   padding: 1px 10px 17px 1px;
   background: rgb(40, 167, 35);
-  border-radius:5px;
+  border-radius: 5px;
   .pseudoInput {
     width: 80%;
-    &:hover, &:focus {
-    box-shadow: 0 0 0 2px rgb(35, 206, 35);
-  }
-  &:focus-within {
-    border-color: rgb(40, 196, 35);
-    box-shadow: 0 0 0 1px rgb(248, 248, 248);
-  }
+    &:hover,
+    &:focus {
+      box-shadow: 0 0 0 2px rgb(35, 206, 35);
+    }
+    &:focus-within {
+      border-color: rgb(40, 196, 35);
+      box-shadow: 0 0 0 1px rgb(248, 248, 248);
+    }
   }
   .errorMessage {
     color: red;

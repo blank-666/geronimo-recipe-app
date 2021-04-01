@@ -5,9 +5,11 @@ import bookmark from "../../icons/bookmark.svg";
 import defaultDish from "../../icons/dish.png";
 import selectedBookmark from "../../icons/selected-bookmark.svg";
 import { useState } from "react";
-import { IngredientsList } from "../IngredientsList";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
+import { formatTime } from "../../helpers";
+//
+import { IngredientsList } from "../IngredientsList";
 
 export function RecipeCard({
   recipe,
@@ -63,7 +65,9 @@ export function RecipeCard({
             </span>
             <span className={s.detailsItem}>
               <img src={clock} alt="" />
-              {recipe.duration} minutes
+              {recipe.duration >= 60
+                ? formatTime(recipe.duration)
+                : recipe.duration + " minutes"}
             </span>
             <div
               className={classnames({

@@ -10,6 +10,7 @@ export function SearchInput({
   selectedCategories,
   options,
   value,
+  onChange,
 }) {
   return (
     <>
@@ -26,9 +27,9 @@ export function SearchInput({
         <CategorySelect
           multiple
           search
+          initialOptions={options}
           addCategory={addCategory}
           selectedCategories={selectedCategories}
-          options={options}
         />
       </div>
       <Tags

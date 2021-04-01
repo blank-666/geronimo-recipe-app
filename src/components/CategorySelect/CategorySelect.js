@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import s from "./CategorySelect.module.scss";
 import classnames from "classnames";
 import { SelectPopUp } from "../SelectPopUp";
@@ -6,15 +6,31 @@ import { Tags } from "../Tags";
 
 export function CategorySelect({
   selectedCategories,
-  options,
+  initialOptions,
   addCategory,
   removeCategory,
   addCustomCategory,
   multiple,
-  search
+  search,
 }) {
+  const [optionsList, setOptionsList] = useState(initialOptions);
+
   const [searchWord, setSearchWord] = useState("");
   const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    if (initialOptions && selectedCategories.length >= 0) {
+      setOptionsList(
+        initialOptions.filter((option) => !selectedCategories.includes(option))
+      );
+    }
+  }, [selectedCategories]);
+
+  function onSelect(selectedOption) {
+    addCategory(selectedOption);
+    setOptionsList(optionsList.filter((option) => option !== selectedOption));
+    hideOptions();
+  }
 
   function handleChange(e) {
     showOptions();
@@ -30,25 +46,17 @@ export function CategorySelect({
     setActive(false);
   }
 
-  function onSelect(option) {
-    addCategory(option);
-    hideOptions();
-  }
-
   function alphabetize(words) {
     const sortedWords = words.sort();
     return sortedWords;
   }
 
-  const updatedOptions = options.filter((category) =>
-    category.toLowerCase().includes(searchWord.toLowerCase())
-  );
   return (
     <div>
       <div
         className={classnames({
           [s.combinedSelect]: multiple,
-          [s.pseudoInput]: !multiple
+          [s.pseudoInput]: !multiple,
         })}
         onClick={active ? hideOptions : showOptions}
         onBlur={hideOptions}
@@ -67,7 +75,11 @@ export function CategorySelect({
       </div>
       {active && (
         <SelectPopUp
-          options={alphabetize(updatedOptions)}
+          options={alphabetize(
+            optionsList.filter((category) =>
+              category.toLowerCase().includes(searchWord.toLowerCase())
+            )
+          )}
           onSelect={onSelect}
           addCustomOption={addCustomCategory}
           searchWord={searchWord}
