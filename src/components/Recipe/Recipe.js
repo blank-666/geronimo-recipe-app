@@ -8,8 +8,6 @@ import { useState, useEffect } from "react";
 import { getRecipeById } from "../../api";
 import { formatTime } from "../../helpers";
 //
-import Popup from "reactjs-popup";
-//
 import { IngredientsList } from "../IngredientsList";
 
 export function Recipe({ favoriteIdList, addFavorite, removeFavorite }) {
