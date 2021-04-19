@@ -318,10 +318,10 @@ export function RecipeForm({ addRecipe, initialCategoriesList }) {
           <p className={s.errorMessage}>{errors.portions}</p>
         </Container>
 
-        <Container label="Autor">
+        <Container label="Author">
           <Input
             width="350px"
-            placeholder="Autor"
+            placeholder="Author"
             value={recipe.autor}
             onChange={(e) => handleInputChange(e.target.value, "autor")}
           />

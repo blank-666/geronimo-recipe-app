@@ -47,7 +47,7 @@ export function RecipeCard({
             <Link to={`/recipe/${recipe.id}`}> {recipe.name}</Link>
           </h3>
           <div className={s.autorContainer}>
-            Autor: <span>{recipe.autor || "unknown"}</span>
+            Author: <span>{recipe.autor || "unknown"}</span>
           </div>
           <div className={s.detailsContainer}>
             <button
