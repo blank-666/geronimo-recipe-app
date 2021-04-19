@@ -1,8 +1,8 @@
 .ingredientsList {
-  font: 14px/2 PT Serif,Georgia,serif;
+  font: 14px/2 PT Serif, Georgia, serif;
   width: 620px;
   margin-bottom: 60px;
-  font-size: 13px; 
+  font-size: 13px;
   line-height: 23px;
   .ingredientsHeader {
     margin: 0;
@@ -15,7 +15,7 @@
       height: 38px;
       line-height: 38px;
       text-transform: uppercase;
-      font-family: PT Serif,Georgia,serif;
+      font-family: PT Serif, Georgia, serif;
       font-weight: 700;
       font-size: 18px;
       letter-spacing: 1px;
@@ -26,7 +26,7 @@
       float: right;
       span {
         vertical-align: middle;
-        font: 8px/1 'Roboto',sans-serif;
+        font: 8px/1 "Roboto", sans-serif;
         letter-spacing: 1px;
         margin-right: 17px;
         text-transform: uppercase;
@@ -39,7 +39,7 @@
         font-size: 20px;
         outline: none;
         background: none;
-        border:none;
+        border: none;
         vertical-align: middle;
         &:nth-child(2) {
           margin-right: 15px;
@@ -58,13 +58,18 @@
         text-align: center;
         font-weight: 700;
         margin: 0;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
     }
   }
   .content {
     width: 100%;
     margin-bottom: 20px;
-    letter-spacing: .1em;
+    letter-spacing: 0.1em;
     vertical-align: baseline;
     .contentItem {
       vertical-align: middle;
@@ -87,17 +92,17 @@
         background: #fff;
         z-index: 1;
         padding-right: 10px;
-        
+
         .customCheckbox {
           input {
             position: absolute;
             z-index: -1;
             opacity: 0;
-            &:checked + span{
+            &:checked + span {
               &::before {
                 border-color: #388f30;
                 background-color: #49b83e;
-                background-image: url('https://www.iconsdb.com/icons/preview/white/checkmark-xxl.png');              
+                background-image: url("https://www.iconsdb.com/icons/preview/white/checkmark-xxl.png");
               }
             }
           }
@@ -106,7 +111,7 @@
             align-items: center;
             user-select: none;
             &:before {
-              content: '';
+              content: "";
               display: inline-block;
               width: 1em;
               height: 1em;
@@ -134,7 +139,7 @@
         }
       }
       .amount {
-        font: 14px/1 'Roboto',sans-serif;
+        font: 14px/1 "Roboto", sans-serif;
         padding-top: 5px;
         position: relative;
         display: inline;
@@ -149,9 +154,10 @@
     }
     .checkedContentItem {
       @extend .contentItem;
-      .name, .amount {
-          text-decoration: rgba(168, 164, 164, 0.63) line-through;
-          color:rgb(141, 135, 135);
+      .name,
+      .amount {
+        text-decoration: rgba(168, 164, 164, 0.63) line-through;
+        color: rgb(141, 135, 135);
       }
     }
   }
@@ -160,7 +166,7 @@
 .miniIngrediensList {
   @extend .ingredientsList;
   width: 100%;
-  margin-bottom:0;
+  margin-bottom: 0;
   .ingredientsHeader {
     padding-bottom: 22px;
     p {
@@ -190,9 +196,9 @@
         font-size: 10px;
       }
       .amount {
-        font: 10px 'Roboto',sans-serif;
+        font: 10px "Roboto", sans-serif;
         padding-top: 6px;
-        letter-spacing: .5px;
+        letter-spacing: 0.5px;
       }
     }
   }
@@ -202,14 +208,14 @@
     display: block;
     border: 1px solid #24af30;
     border-radius: 2px;
-    font: 10px/30px Roboto,sans-serif;
+    font: 10px/30px Roboto, sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-align: center;
     cursor: pointer;
     color: #000;
     text-decoration: none;
-    transition: .2s;
+    transition: 0.2s;
     &:hover {
       background: #24af30;
       color: white;

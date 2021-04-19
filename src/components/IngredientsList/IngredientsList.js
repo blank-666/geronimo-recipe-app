@@ -7,30 +7,23 @@ export function IngredientsList({
   mini,
   ingredients,
   initialPortions,
-  recipeId
+  recipeId,
 }) {
   const [updatedPortions, setUpdatedPortions] = useState(initialPortions);
   const initialshoppingList = sortShoppingList(
     ingredients.map((ingredient, index) => ({
       id: index + 1,
       ingredient: { ...ingredient },
-      done: false
+      done: false,
     }))
   );
   const [shoppingList, setShoppingList] = useState(initialshoppingList);
-
-  // const sortedIngredients = sortIngredientsByAmount(ingredients);
-
-  // function sortIngredientsByAmount(ingredients) {
-  //   const sortedIngredients = ingredients.sort((a, b) => b.amount - a.amount);
-  //   return sortedIngredients;
-  // }
 
   function onChangeBox(indexOfCheckedItem) {
     const checkedItem = shoppingList.splice(indexOfCheckedItem, 1)[0];
     const updatedShoppingList = [
       ...shoppingList,
-      { ...checkedItem, done: !checkedItem.done }
+      { ...checkedItem, done: !checkedItem.done },
     ];
     setShoppingList(updatedShoppingList);
   }
@@ -94,7 +87,7 @@ export function IngredientsList({
     <div
       className={classnames({
         [s.miniIngrediensList]: mini,
-        [s.ingredientsList]: !mini
+        [s.ingredientsList]: !mini,
       })}
     >
       <div className={s.ingredientsHeader}>
@@ -105,6 +98,7 @@ export function IngredientsList({
             −
           </button>
           <input
+            type="number"
             value={updatedPortions}
             onChange={(e) => setUpdatedPortions(e.target.value)}
           ></input>
@@ -121,7 +115,7 @@ export function IngredientsList({
             key={`${item.ingredient.name}_${item.ingredient.id}`}
             className={classnames({
               [s.contentItem]: !item.done,
-              [s.checkedContentItem]: item.done
+              [s.checkedContentItem]: item.done,
             })}
           >
             <span className={s.name}>
@@ -139,16 +133,6 @@ export function IngredientsList({
             </span>
           </p>
         ))}
-        {/* {sortedIngredients.map((ingredient) => (
-          <p key={`${ingredient.name}${recipeId}`} className={s.contentItem}>
-            <span className={s.name}>
-              <span>{ingredient.name}</span>
-            </span>
-            <span className={s.amount}>
-              {updateAmount(ingredient.amount, ingredient.unit)}
-            </span>
-          </p>
-        ))} */}
       </div>
       {mini && (
         <Link className={s.toRecipeButton} to={`/recipe/${recipeId}`}>

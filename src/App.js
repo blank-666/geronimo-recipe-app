@@ -11,10 +11,6 @@ import { Recipe } from "./components/Recipe";
 import { Header } from "./components/Header";
 import { FavoriteRecipesList } from "./components/FavoriteRecipesList";
 import { CategoryPage } from "./components/CategoryPage";
-// LocalStorageManager.getCategoriesList()
-
-// LocalStorageManager.setRecipesList(recipes);
-// LocalStorageManager.setCategoriesList(categoriesList);
 
 export default function App() {
   const [favoriteIdList, setFavoriteIdList] = useState(
@@ -77,10 +73,7 @@ export default function App() {
               />
             </Route>
             <Route path="/form">
-              <RecipeForm
-                initialCategoriesList={categoriesList}
-                // addRecipe={addRecipe}
-              />
+              <RecipeForm initialCategoriesList={categoriesList} />
             </Route>
             <Route path="/favorites">
               <FavoriteRecipesList
@@ -103,13 +96,6 @@ export default function App() {
                 removeFavorite={removeFavorite}
                 favoriteIdList={favoriteIdList}
               />
-              {/* <PreviewPage
-                // categoriesList={categoriesList}
-                recipesList={recipesList}
-                addFavorite={addFavorite}
-                removeFavorite={removeFavorite}
-                favoriteIdList={favoriteIdList}
-              /> */}
             </Route>
           </Switch>
         )}

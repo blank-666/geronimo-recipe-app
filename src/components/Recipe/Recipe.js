@@ -8,20 +8,14 @@ import { useState, useEffect } from "react";
 import { getRecipeById } from "../../api";
 import { formatTime } from "../../helpers";
 //
-import Lightbox from "react-image-lightbox";
+import Popup from "reactjs-popup";
 //
 import { IngredientsList } from "../IngredientsList";
-
-let images = [];
 
 export function Recipe({ favoriteIdList, addFavorite, removeFavorite }) {
   const [isLoading, setIsLoading] = useState(true);
   const [recipe, setRecipe] = useState();
   const [isFavorite, setIsFavorite] = useState();
-  //
-  const [lightboxIsOpen, setLightboxIsOpen] = useState(0);
-  const [photoIndex, setPhotoIndex] = useState(0);
-  //
   let { id } = useParams();
 
   useEffect(() => {
@@ -36,18 +30,6 @@ export function Recipe({ favoriteIdList, addFavorite, removeFavorite }) {
   useEffect(() => {
     setIsFavorite(favoriteIdList.includes(id));
   });
-
-  useEffect(() => {
-    if (!isLoading) {
-      recipe.image && images.push(recipe.image);
-      recipe.description.map((step) => step.image && images.push(step.image));
-    }
-  }, [isLoading]);
-
-  // const images = [recipe.image];
-  // recipe.image && images.push(recipe.image);
-  // recipe.description.map((step) => step.image && images.push(step.image));
-  // console.log(images);
 
   return (
     <div className={s.container}>
@@ -101,26 +83,8 @@ export function Recipe({ favoriteIdList, addFavorite, removeFavorite }) {
           </div>
           {recipe.image && (
             <div className={s.imageContainer}>
-              <img
-                src={recipe.image}
-                alt=""
-                onClick={() => setLightboxIsOpen(true)}
-              />
+              <img src={recipe.image} alt="" />
             </div>
-          )}
-          {!!lightboxIsOpen && (
-            <Lightbox
-              mainSrc={images[photoIndex]}
-              nextSrc={images[(photoIndex + 1) % images.length]}
-              prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-              onCloseRequest={() => setLightboxIsOpen(false)}
-              onMovePrevRequest={() =>
-                setPhotoIndex((photoIndex + images.length - 1) % images.length)
-              }
-              onMoveNextRequest={() =>
-                setPhotoIndex((photoIndex + 1) % images.length)
-              }
-            />
           )}
           <div className={s.autorContainer}>
             <p>Recipe author</p>
