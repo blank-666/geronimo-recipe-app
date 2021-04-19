@@ -1,12 +1,5 @@
-const baseUrl = "https://ekl1s.sse.codesandbox.io";
+const baseUrl = "https://geronimo-recipes.herokuapp.com";
 
-// GET /recipes - підтримка кверей search і filter
-// GET /recipe/:id
-// GET /categories - якогось дефолтного набору категорій немає, вони виймаються із кожного нового рецепту й додаються у спільне сховище
-// POST /recipe - айдішка додається автоматом
-// POST /reset - ресет файлового сховища до тих 2 рецептів, що в тебе на репо, та їхніх категорій
-
-//https://ekl1s.sse.codesandbox.io/recipes
 export async function getRecipes() {
   try {
     let response = await fetch(`${baseUrl}/recipes`);
@@ -17,7 +10,6 @@ export async function getRecipes() {
   }
 }
 
-//https://ekl1s.sse.codesandbox.io/recipes/?search=lasagna&filter=Meat&filter=Cakes
 export async function searchRecipes(name, categories) {
   const categoriesQuery = categories
     .map((category) => `&filter=${category}`)
@@ -34,7 +26,6 @@ export async function searchRecipes(name, categories) {
   }
 }
 
-//https://ekl1s.sse.codesandbox.io/recipe/dce0f279-fff5-4348-9c23-e130d1abdcb7
 export async function getRecipeById(id) {
   try {
     let response = await fetch(`${baseUrl}/recipe/${id}`);
@@ -45,7 +36,6 @@ export async function getRecipeById(id) {
   }
 }
 
-//https://ekl1s.sse.codesandbox.io/categories
 export async function getCategories() {
   try {
     let response = await fetch(`${baseUrl}/categories`);
