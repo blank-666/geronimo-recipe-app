@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/geronimo-recipe-app/static/css/main.62104616.chunk.css",
+    "main.js": "/geronimo-recipe-app/static/js/main.9ba59e3a.chunk.js",
+    "main.js.map": "/geronimo-recipe-app/static/js/main.9ba59e3a.chunk.js.map",
+    "runtime-main.js": "/geronimo-recipe-app/static/js/runtime-main.1705b49d.js",
+    "runtime-main.js.map": "/geronimo-recipe-app/static/js/runtime-main.1705b49d.js.map",
+    "static/js/2.4467e3b5.chunk.js": "/geronimo-recipe-app/static/js/2.4467e3b5.chunk.js",
+    "static/js/2.4467e3b5.chunk.js.map": "/geronimo-recipe-app/static/js/2.4467e3b5.chunk.js.map",
+    "index.html": "/geronimo-recipe-app/index.html",
+    "static/css/main.62104616.chunk.css.map": "/geronimo-recipe-app/static/css/main.62104616.chunk.css.map",
+    "static/js/2.4467e3b5.chunk.js.LICENSE.txt": "/geronimo-recipe-app/static/js/2.4467e3b5.chunk.js.LICENSE.txt",
+    "static/media/bookmark.a0abcb8b.svg": "/geronimo-recipe-app/static/media/bookmark.a0abcb8b.svg",
+    "static/media/clock.67daedf5.svg": "/geronimo-recipe-app/static/media/clock.67daedf5.svg",
+    "static/media/dish.1bcaf704.png": "/geronimo-recipe-app/static/media/dish.1bcaf704.png",
+    "static/media/loupe.28b6f036.svg": "/geronimo-recipe-app/static/media/loupe.28b6f036.svg",
+    "static/media/restaurant.f52db006.svg": "/geronimo-recipe-app/static/media/restaurant.f52db006.svg",
+    "static/media/sad.d85e919a.svg": "/geronimo-recipe-app/static/media/sad.d85e919a.svg",
+    "static/media/selected-bookmark.d65430b5.svg": "/geronimo-recipe-app/static/media/selected-bookmark.d65430b5.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1705b49d.js",
+    "static/js/2.4467e3b5.chunk.js",
+    "static/css/main.62104616.chunk.css",
+    "static/js/main.9ba59e3a.chunk.js"
+  ]
+}
